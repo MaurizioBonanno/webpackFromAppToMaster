@@ -11,6 +11,7 @@ const webpack = require('webpack');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const WebpackObfuscatorPlugin = require('webpack-obfuscator');
 
 exports.devServer = ()=>({
     watch: true,
@@ -155,4 +156,21 @@ exports.tailwind = () => ({
         minimizerOptions: options
       })]
     }
-  })
+  });
+
+
+  exports.setFreeVariables = (key,value)=>{
+    const env = {};
+    env[key] = JSON.stringify(value);
+    return{ 
+      plugins:[new webpack.DefinePlugin(env)]
+    };
+  };
+
+  exports.addObfuscator = ()=>({
+    plugins:[
+      new WebpackObfuscatorPlugin({
+        rotateStringArray: true
+      },['vendor.js'])
+    ]
+  });

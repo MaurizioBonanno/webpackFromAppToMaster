@@ -13,7 +13,9 @@ const commonConfig = merge([
     parts.loadJavascript(),
     { output: { path: path.resolve(process.cwd(), "dist") } },
     parts.clean(),
-    parts.attachRevision() 
+    parts.attachRevision(),
+    parts.setFreeVariables("HELLO","Hello from config"),
+    parts.addObfuscator() 
 ]);
 
 const productionConfig = merge([
