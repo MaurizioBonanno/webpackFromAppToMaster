@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+/* Write your utility classes here */
+@tailwind utilities;
+
+body {
+  background: cornsilk;
+  background-image: url('./assets/images/default.jpg');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+}
