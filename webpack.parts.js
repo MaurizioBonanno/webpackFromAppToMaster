@@ -6,6 +6,7 @@ const glob = require("glob");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 const PATH_SOURCE = path.join(__dirname,'src');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 exports.devServer = ()=>({
     watch: true,
@@ -123,3 +124,9 @@ exports.tailwind = () => ({
   exports.generateSourceMap = ({type})=>({
     devtool: type
   });
+
+  exports.clean = ()=>({
+    plugins:[
+      new CleanWebpackPlugin()
+    ]
+  })
