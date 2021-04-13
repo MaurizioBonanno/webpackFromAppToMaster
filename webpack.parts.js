@@ -9,6 +9,8 @@ const PATH_SOURCE = path.join(__dirname,'src');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 exports.devServer = ()=>({
     watch: true,
@@ -139,4 +141,18 @@ exports.tailwind = () => ({
         banner: new GitRevisionPlugin().version()
       })
     ]
+  });
+
+  exports.minifyJavascript = ()=>({
+    optimization: {
+      minimizer:[ new TerserPlugin()]
+    },
+  });
+
+  exports.minifyCss = ({options})=>({
+    optimization:{
+      minimizer:[new CssMinimizerPlugin({
+        minimizerOptions: options
+      })]
+    }
   })

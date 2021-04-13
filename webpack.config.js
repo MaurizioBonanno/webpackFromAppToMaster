@@ -28,7 +28,9 @@ const productionConfig = merge([
                  }
              }
          }
-     },}
+     },},
+     parts.minifyJavascript(),
+     parts.minifyCss({options:{preset:["default"]}})
     ]);
 
 const developmentConfig = merge([
