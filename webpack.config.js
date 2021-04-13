@@ -12,7 +12,8 @@ const commonConfig = merge([
     parts.loadImages({limit: 150000}),
     parts.loadJavascript(),
     { output: { path: path.resolve(process.cwd(), "dist") } },
-    parts.clean() 
+    parts.clean(),
+    parts.attachRevision() 
 ]);
 
 const productionConfig = merge([
