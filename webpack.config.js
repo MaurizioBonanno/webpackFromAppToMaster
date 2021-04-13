@@ -11,7 +11,14 @@ const commonConfig = merge([
     parts.loadJavascript(),
 ]);
 
-const productionConfig = merge([ parts.eliminateUnusedCSS(),]);
+const productionConfig = merge([
+     parts.eliminateUnusedCSS(),
+     { optimization: {
+         splitChunks: {
+             chunks: "all"
+         }
+     },}
+    ]);
 
 const developmentConfig = merge([
   { entry : ["webpack-plugin-serve/client"] },
